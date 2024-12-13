@@ -1,0 +1,15 @@
+---
+- name: Configure Satellite
+  hosts: foreman_hostcollection_production_satellite_server
+  vars_files:
+    - vars.yml
+    - secrets.yml
+
+  tasks:
+    - name: Create Organization
+      ansible.builtin.include_role:
+        name: redhat.satellite.organizations
+
+    - name: Create Lifecycle Environments
+      ansible.builtin.include_role:
+        name: redhat.satellite.lifecycle_environments
